@@ -2,8 +2,8 @@
     "name"       : "tihhgoncalves/zjs",
     "description": "zJS Compress JavaSCript",
     "keywords"   : ["js", "zjs"],
-    "license"    : "GPL v.3",
-    "type"       : "library",
+    "license"    : "MIT",
+    "type"       : "project",
     "authors"    : [
         {
             "name" : "Tiago Gonçalves",
