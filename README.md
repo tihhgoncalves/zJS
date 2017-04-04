@@ -1,2 +1,2 @@
 # zJS
-zJS
+Compress JavaScript

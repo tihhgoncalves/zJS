@@ -1,64 +1,20 @@
 <?php
 
+// Carregar vendor
+require __DIR__ . '/vendor/autoload.php';
 
-ini_set('error_log', dirname(__FILE__) . '/zJS_log.txt'); 
+date_default_timezone_set('America/Sao_Paulo');
 
-echo("\n\n\n");
-echo("---------------------------------------------------------------\n");
-echo("---------------    BEM VINDO AO zJS 1.0    --------------------\n");
-echo("---------------------------------------------------------------\n");
-echo("\n\n\n");
+use Symfony\Component\Console\Input\InputOption;
 
-print_r($_GET);
+// Carregar parâmetros
+$def = new \Symfony\Component\Console\Input\InputDefinition([]);
+$def->addArgument(new \Symfony\Component\Console\Input\InputArgument('path', InputOption::VALUE_REQUIRED, 'Diretorio base'));
+$def->addArgument(new \Symfony\Component\Console\Input\InputArgument('in', InputOption::VALUE_REQUIRED, 'Arquivo index Ex.: index.zjs'));
+$def->addArgument(new \Symfony\Component\Console\Input\InputArgument('out', InputOption::VALUE_REQUIRED, 'Arquivo output Ex.: script.js'));
+$def->addOption(new \Symfony\Component\Console\Input\InputOption('log', 'l', InputOption::VALUE_NONE, 'Habilita ou não o log'));
+$def->addOption(new \Symfony\Component\Console\Input\InputOption('minify', 'm', InputOption::VALUE_NONE, 'Habilita minificacao do arquivo'));
 
-$path = $_GET['path'];
-//$path = str_replace('\\', '/', $path);
-$in = $_GET['in'];
-$out = $_GET['out'];
-//$minimal = (!empty(@$_GET['minimal']));
-
-
-echo("\n\n\n");
-//die($path . '/' . $in);
-$arquivo = fopen($path . '/' . $in, 'r');
-
-$scripts = array();
-while (!feof ($arquivo)) {
-  $linha = fgets($arquivo);
-
-  $linha = str_replace("\r", null, $linha);
-  $linha = str_replace("\n", null, $linha);
-  $scripts[] = $linha;
-}
-
-$unificado = null;
-echo("\n\n\n");
-foreach($scripts as $script){
-
-  $code = fopen($path . '/' . $script, 'r');
-  $code_str = null;
-  while (!feof ($code)) {
-    $code_str .= fgets($code);
-  }
-
-  $unificado .= $code_str . "\n";
-}
-
-//escreve unificado
-//die($path . '/' . $out);
-$arquivo_unificado = fopen($path . '/' . $out, 'w+');
-//die('ENTROU no PHP');
-fwrite($arquivo_unificado, $unificado);
-fclose($arquivo_unificado);
-
-//Copia o .min.hs (temporário)
-copy($path . '/' . $out, $path . '/' . str_replace('.js', '.min.js', $out));
-
-$jsfinal = $path . '/' . $out;
-die($jsfinal);
-
-//comprime (minimal)
-/*if($minimal == 'minimal') {
-  echo("\n\n --> Arquivo foi comprimido!\n\n");
-}*/
-?>
+// Juntar arquivos
+$builder = new \Zjs\Builder(__DIR__, new \Symfony\Component\Console\Input\ArgvInput(null, $def));
+$builder->make();

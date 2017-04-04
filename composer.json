@@ -1,0 +1,31 @@
+{
+    "name"       : "tihhgoncalves/zJS",
+    "description": "zJS Compress JavaSCript",
+    "keywords"   : ["js", "zjs"],
+    "license"    : "GPL v.3",
+    "type"       : "library",
+    "authors"    : [
+        {
+            "name" : "Tiago Gonçalves",
+            "email": "tihh.gon@gmail.com"
+        },
+        {
+            "name" : "Bruno Gonçalves",
+            "email": "bugotech@gmail.com"
+        }
+    ],
+
+
+    "require": {
+        "php"            : ">=5.5.9",
+        "bugotech/io"    : "0.3.*",
+        "symfony/console": "2.8.*|3.0.*"
+    },
+
+    "autoload": {
+
+        "psr-4": {
+            "Zjs\\": "src/"
+        }
+    }
+}
