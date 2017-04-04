@@ -15,7 +15,7 @@
     <option name="outputFromStdout" value="false" />
     <option name="passParentEnvs" value="true" />
     <option name="program" value="zJS.bat" />
-    <option name="scopeName" value="Arquivos zJS" />
+    <option name="scopeName" value="zJS Files" />
     <option name="trackOnlyRoot" value="false" />
     <option name="workingDir" value="$ProjectFileDir$" />
     <envs />
