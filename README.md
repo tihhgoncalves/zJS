@@ -4,7 +4,7 @@ Compress JavaScript
 ## Instalação - Via Composer
 Para instalar o zJS, basta ir em um terminal `console` e executar o comando exibido a baixo:
 
-    composer create-project --prefer-dist tihhgoncalves/zJS zjs
+    composer create-project --prefer-dist tihhgoncalves/zjs zjs
 
 ## Configurar no PHPStorm
 
