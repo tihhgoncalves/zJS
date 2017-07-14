@@ -72,6 +72,10 @@ class Builder
         if ($this->files->exists($out_file)) {
             $this->files->delete($out_file);
         }
+
+        $dir = $this->files->path($out_file);
+        $this->files->force($dir);
+
         $buffer = trim($buffer);
         $this->files->put($out_file, $buffer);
 
@@ -92,18 +96,23 @@ class Builder
     }
 
     /**
-     * Retorna a definição em index.zjs (JSON).
+     * Retorna a definiÃ§Ã£o em index.zjs (JSON).
      * @return \stdClass
      * @throws \Exception
      */
     protected function getIndex()
     {
         $projeto_path = $this->input->getArgument('path');
+        $file_index = $this->input->getArgument('in');
+
+        if (is_null($file_index)) {
+            throw new \Exception('Arquivo root.zjs nao foi informado');
+        }
 
         // Carregar arquivo index.zjs
-        $file_index = $this->files->combine($projeto_path, $this->input->getArgument('in'));
+        $file_index = $this->files->combine($projeto_path, $file_index);
         if (! $this->files->exists($file_index)) {
-            throw new \Exception('Arquivo root.zjs nao foi encontrado');
+            throw new \Exception(sprintf('Arquivo root "%s" nao foi encontrado', $file_index));
         }
 
         // Carregar arquivo e traduz em objeto JSON

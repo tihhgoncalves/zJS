@@ -17,15 +17,24 @@
 
 
     "require": {
-        "php"            : ">=5.5.9",
-        "bugotech/io"    : "0.3.*",
-        "symfony/console": "2.8.*|3.0.*"
+        "php"                 : ">=5.5.9",
+        "bugotech/io"         : "1.0.*",
+        "illuminate/contracts": "5.2.*",
+        "bugotech/phar"       : "dev-master",
+        "symfony/console"     : "2.8.*|3.0.*"
     },
 
     "autoload": {
 
         "psr-4": {
             "Zjs\\": "src/"
-        }
-    }
+        },
+
+        "classmap": [
+            "build"
+        ]
+    },
+
+    "minimum-stability": "dev",
+    "prefer-stable"    : true
 }
